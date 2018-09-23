@@ -1,4 +1,4 @@
-package paritycheckers;
+package correction;
 
 import java.util.Scanner;
 
