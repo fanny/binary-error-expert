@@ -27,7 +27,7 @@ public class ParityVerifier implements Verifier{
 		return parityValue;
 	}
 
-	public boolean verifyParity(int[] data) {
+	private boolean verifyParity(int[] data) {
 		if (this.parity.equals(Parity.ODD)) {
 			return (this.getParityValue(data) == Bit.ZERO.getValue());
 		}

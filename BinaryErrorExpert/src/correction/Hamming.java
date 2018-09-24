@@ -83,9 +83,9 @@ public class Hamming  implements Corrector, Verifier{
 
 
 	@Override
-	public boolean verifyParity(int[] data) {
+	public String verifyData(int[] data) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 
