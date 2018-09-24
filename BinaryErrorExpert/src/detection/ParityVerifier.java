@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import util.*;
 
-public class ParityVerifier implements Checker{
+public class ParityVerifier implements Verifier{
 
 	private Parity parity;
 

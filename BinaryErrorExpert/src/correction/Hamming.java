@@ -2,9 +2,9 @@ package correction;
 
 import java.util.Scanner;
 
-import detection.Checker;
+import detection.Verifier;
 
-public class Hamming  implements Corrector, Checker{
+public class Hamming  implements Corrector, Verifier{
 	public static void main(String args[]) {
 		Scanner sc = new Scanner(System.in);
 		final int EXTRA_BITS = 4;

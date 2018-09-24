@@ -1,6 +1,6 @@
 package detection;
 
-public interface Checker {
+public interface Verifier {
 
 	public boolean verifyParity(int[] data);
 	
