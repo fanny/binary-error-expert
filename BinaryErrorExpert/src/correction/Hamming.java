@@ -78,6 +78,7 @@ public class Hamming implements Corrector, Verifier {
 				quantity++;
 			}
 		}
+		
 		return quantity;
 		
 	}
