@@ -20,7 +20,7 @@ public class ParityVerifier implements Verifier{
 	private int getParityValue(int[] data) {
 		int parityValue = Bit.ZERO.getValue();
 
-		for (bit: data) {
+		for (int bit: data) {
 			parityValue = (parityValue ^ bit);
 		}
 
