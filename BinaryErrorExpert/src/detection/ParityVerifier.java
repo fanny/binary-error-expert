@@ -2,17 +2,11 @@ package detection;
 
 import java.util.Arrays;
 
-import util.Parity;
+import util.*;
 
 public class ParityVerifier implements Checker{
 
 	private Parity parity;
-
-	private static final int ZERO = 0;
-	private static final int ONE = 1;
-
-	private static final String CORRECT = "correct";
-	private static final String INCORRECT = "incorrect";
 
 	public ParityVerifier(Parity parity) {
 		this.parity = parity;
@@ -24,7 +18,7 @@ public class ParityVerifier implements Checker{
 	}
 
 	private int getParityValue(int[] data) {
-		int parityValue = ZERO;
+		int parityValue = Bit.ZERO.getValue();
 
 		for (int index = 0; index < data.length; index++) {
 			parityValue = (parityValue ^ data[index]);
@@ -35,18 +29,18 @@ public class ParityVerifier implements Checker{
 
 	public boolean verifyParity(int[] data) {
 		if (this.parity.equals(Parity.ODD)) {
-			return (this.getParityValue(data) == ZERO);
+			return (this.getParityValue(data) == Bit.ZERO.getValue());
 		}
 
-		return (this.getParityValue(data) == ONE);
+		return (this.getParityValue(data) == Bit.ZERO.getValue());
 	}
 
 	private String getParityMessage(int[] data) {
 		if (this.verifyParity(data)) {
-			return CORRECT;
+			return Response.CORRECT.toString();
 		}
-
-		return INCORRECT;
+		
+		return Response.INCORRECT.toString();
 	}
 
 }
