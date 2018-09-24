@@ -20,8 +20,8 @@ public class ParityVerifier implements Verifier{
 	private int getParityValue(int[] data) {
 		int parityValue = Bit.ZERO.getValue();
 
-		for (int index = 0; index < data.length; index++) {
-			parityValue = (parityValue ^ data[index]);
+		for (bit: data) {
+			parityValue = (parityValue ^ bit);
 		}
 
 		return parityValue;
