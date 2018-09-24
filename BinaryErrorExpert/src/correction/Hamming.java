@@ -2,7 +2,9 @@ package correction;
 
 import java.util.Scanner;
 
-public class Hamming {
+import detection.Checker;
+
+public class Hamming  implements Corrector, Checker{
 	public static void main(String args[]) {
 		Scanner sc = new Scanner(System.in);
 		final int EXTRA_BITS = 4;
@@ -76,6 +78,22 @@ public class Hamming {
 		// Se eu tiver 0 and 0 = 1, se eu tiver 1 and 0 = 0
 		received_data[sum-1] = received_data[sum-1] & 0;
 		return received_data;
+	}
+
+
+
+	@Override
+	public boolean verifyParity(int[] data) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+
+	@Override
+	public int[] fix(int[] data) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

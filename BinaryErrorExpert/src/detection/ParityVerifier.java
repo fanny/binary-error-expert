@@ -2,7 +2,9 @@ package detection;
 
 import java.util.Arrays;
 
-public class ParityVerifier {
+import util.Parity;
+
+public class ParityVerifier implements Checker{
 
 	private Parity parity;
 
@@ -31,7 +33,7 @@ public class ParityVerifier {
 		return parityValue;
 	}
 
-	private boolean verifyParity(int[] data) {
+	public boolean verifyParity(int[] data) {
 		if (this.parity.equals(Parity.ODD)) {
 			return (this.getParityValue(data) == ZERO);
 		}

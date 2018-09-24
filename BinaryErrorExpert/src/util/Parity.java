@@ -1,4 +1,4 @@
-package detection;
+package util;
 
 public enum Parity {
 	
