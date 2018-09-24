@@ -2,6 +2,6 @@ package correction;
 
 public interface Corrector {
 	
-	public int[] fix(int[] data);
+	public int[] fixData(int[] data);
 
 }
