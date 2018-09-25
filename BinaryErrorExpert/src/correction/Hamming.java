@@ -42,6 +42,7 @@ public class Hamming implements Verifier, Corrector {
 				k[parityIndex++] = getExtraBitValue(i + 1, data);
 			}
 		}
+		
 		return k;
 	}
 	
