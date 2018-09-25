@@ -1,4 +1,5 @@
 package correction;
+
 import java.util.Arrays;
 
 import detection.Verifier;
@@ -33,9 +34,12 @@ public class Hamming implements Corrector, Verifier {
 	
 	private int[] getParityValues(int[] data) {
 		int k[] = new int[getQuantityExtraBits()];
+		int parityIndex = 0;
 		
-		for (int i = 0; i < k.length; i++) {
-			k[i] = getParityValue(i + 1, data);
+		for (int i = 0; i < data.length; i++) {
+			if(isIndexPower2(i+1)) {
+				k[parityIndex++] = getParityValue(i + 1, data);
+			}
 		}
 
 		return k;
@@ -48,7 +52,7 @@ public class Hamming implements Corrector, Verifier {
 		for (int i = pos-1; i < size;) {
 			int j = i;
 			while(j < i + pos && j < size) {
-				parityValue = parityValue ^ data[j];
+				parityValue ^= data[j];
 				j++;
 			}
 			i = j + pos;
@@ -64,21 +68,21 @@ public class Hamming implements Corrector, Verifier {
 		
 		for(int i = 0; i < parityBits.length; i++) {
 			int bit = parityBits[i];
-			index += (Math.pow(2, i+1) * bit);
+			index += (Math.pow(2, i) * bit);
 		}
 		data[index-1] = data[index-1] & Bit.ZERO.getValue();
 		
 		return data;
 	}
-	
+
 	private int getQuantityExtraBits() {
 		int quantity = 0;
 		for (int i = 0; i < this.bits; i++) {
-			if (isIndexPower2(i+1)) {
+			if (isIndexPower2(i)) {
 				quantity++;
 			}
 		}
-		
+	
 		return quantity;
 		
 	}
