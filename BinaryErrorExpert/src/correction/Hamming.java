@@ -4,7 +4,7 @@ import java.util.Arrays;
 import detection.Verifier;
 import util.Bit;
 
-public class Hamming implements Corrector, Verifier {
+public class Hamming implements Verifier, Corrector {
 	
 	private int bits;
 	
@@ -13,7 +13,7 @@ public class Hamming implements Corrector, Verifier {
 	}
 	
 	public String verifyData(int[] data) {
-		return "The parity, the given data (" + Arrays.toString(data) + ")"
+		return "According to Hamming code, the given data (" + Arrays.toString(data) + ")"
 				+ " is " + this.getParityMessage(data) + "!";
 	}
 	
@@ -24,43 +24,42 @@ public class Hamming implements Corrector, Verifier {
 	
 	@Override
 	public boolean verifyParity(int[] data) {
-		int[] expectedParityBits = new int[getQuantityExtraBits()];
-		int[] parityBits = this.getParityValues(data);
+		int[] expectedParityBits = new int[getExtraBitsQuantity()];
+		int[] parityBits = this.getExtraBitsValues(data);
 		Arrays.fill(expectedParityBits, Bit.ZERO.getValue());
 		
 		return parityBits == expectedParityBits;
 	}
 	
-	private int[] getParityValues(int[] data) {
-		int k[] = new int[getQuantityExtraBits()];
+	private int[] getExtraBitsValues(int[] data) {
+		int k[] = new int[getExtraBitsQuantity()];
 		
 		for (int i = 0; i < k.length; i++) {
-			k[i] = getParityValue(i + 1, data);
+			k[i] = getExtraBitValue(i + 1, data);
 		}
 
 		return k;
 	}
 	
-	private int getParityValue(int pos, int[] data) {
-		int parityValue = Bit.ZERO.getValue();
-		int size = data.length;
+	private int getExtraBitValue(int position, int[] data) {
+		int bitValue = Bit.ZERO.getValue();
 		
-		for (int i = pos-1; i < size;) {
+		for (int i = position - 1; i < data.length;) {
 			int j = i;
-			while(j < i + pos && j < size) {
-				parityValue = parityValue ^ data[j];
+			while(j < i + position && j < data.length) {
+				bitValue = (bitValue ^ data[j]);
 				j++;
 			}
-			i = j + pos;
+			i = j + position;
 		}
 		
-		return parityValue;
+		return bitValue;
 	}
 
 	@Override
 	public int[] fixData(int[] data) {
 		int index = 0;
-		int[] parityBits = getParityValues(data);
+		int[] parityBits = getExtraBitsValues(data);
 		
 		for(int i = 0; i < parityBits.length; i++) {
 			int bit = parityBits[i];
@@ -71,21 +70,19 @@ public class Hamming implements Corrector, Verifier {
 		return data;
 	}
 	
-	private int getQuantityExtraBits() {
+	private int getExtraBitsQuantity() {
 		int quantity = 0;
 		for (int i = 0; i < this.bits; i++) {
-			if (isIndexPower2(i+1)) {
+			if (isPowerOfTwoIndex(i+1)) {
 				quantity++;
 			}
 		}
 		
 		return quantity;
-		
 	}
 	
-	private static boolean isIndexPower2(int index) {
-		return (index & (index - 1)) == 0;
+	private static boolean isPowerOfTwoIndex(int index) {
+		return ((index & (index - 1)) == 0);
 	}
-
 
 }
