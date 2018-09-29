@@ -41,7 +41,16 @@ public class HammingTest {
 		assertArrayEquals(expectedValue, hamming.fixData(data));
 
 	}
-
+	
+	@Test
+	void testFixEightBit() {
+		int[] data = { 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0 };
+		int[] expectedValue = { 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0};
+		
+		assertArrayEquals(expectedValue, hamming.fixData(data));
+		
+	}
+	
 	@Test
 	void testCorrectData() {
 		int[] data = { 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1 };

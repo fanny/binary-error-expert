@@ -51,7 +51,7 @@ public class Hamming implements Verifier, Corrector {
 		int[] expectedParityBits = new int[getExtraBitsQuantity()];
 		int[] parityBits = this.getExtraBitsValues(data);
 		Arrays.fill(expectedParityBits, Bit.ZERO.getValue());
-		System.out.println(Arrays.toString(parityBits));
+		
 		return (Arrays.equals(parityBits, expectedParityBits));
 	}
 
@@ -65,15 +65,15 @@ public class Hamming implements Verifier, Corrector {
 
 	@Override
 	public int[] fixData(int[] data) {
-		int index = 0;
+		int errorLocation = 0;
 		int[] parityBits = getExtraBitsValues(data);
 
 		for (int i = 0; i < parityBits.length; i++) {
 			int bit = parityBits[i];
-			index += (Math.pow(2, i) * bit);
+			errorLocation += (Math.pow(2, i) * bit);
 		}
 		
-		data[index - 1] = data[index - 1] ^ Bit.ONE.getValue();
+		data[errorLocation - 1] = data[errorLocation - 1] ^ Bit.ONE.getValue();
 		
 		return data;
 	}
