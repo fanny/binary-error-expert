@@ -1,7 +1,5 @@
 package detection;
 
-import java.util.Arrays;
-
 import util.*;
 
 public class ParityVerifier implements Verifier {
@@ -29,7 +27,7 @@ public class ParityVerifier implements Verifier {
 
 	private boolean verifyParity(int[] data) {
 		if (this.parity.equals(Parity.ODD)) {
-			return (this.getParityValue(data) == Bit.ZERO.getValue());
+			return (this.getParityValue(data) == Bit.ONE.getValue());
 		}
 
 		return (this.getParityValue(data) == Bit.ZERO.getValue());
