@@ -36,7 +36,7 @@ public class CyclicRedundancyVerifier implements Verifier {
 	    int polynomialDegree = this.generatorPolynomial.length;
 	    data = this.updateCrcBitsToZero(data);
 		
-	    for(int i = 0; i < data.length; i++){
+	    for(int i = 0; i < data.length; i++) {
 		int mostSignificativeBit = data[i];
 		if(mostSignificativeBit == Bit.ONE.getValue()) {
 		    for(int j = 0; j < polynomialDegree; j++){
@@ -49,10 +49,10 @@ public class CyclicRedundancyVerifier implements Verifier {
 	}
 
 	private int[] updateCrcBitsToZero(int[] data) {
-	    int polynomialDegree = this.generatorPolynomial.length
+	    int polynomialDegree = this.generatorPolynomial.length;
 	    int size = data.length;
 		
-	    for (int i = size - polynomialDegree; i < size; i++){
+	    for (int i = size - polynomialDegree; i < size; i++) {
 		data[i] = Bit.ZERO.getValue();
 	    }
 	
