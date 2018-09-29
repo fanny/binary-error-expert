@@ -16,8 +16,37 @@ public class CyclicRedundancyVerifier implements Verifier {
 
 	
 	private boolean verifyCRC(int[] data) {
-		// TODO Auto-generated method stub
-		return false;
+	    int[] resultPolynomialDivision = this.polynomialDivision(data);
+            int[] expectedResultDivision = new int[data.length];
+            Arrays.fill(expectedResultDivision, Bit.ZERO.getValue());
+	
+            return (Arrays.equals(resultPolynomialDivision, expectedResultDivision));
 	}
 	
+	private int[] polynomialDivision(int[] data) {
+	    int polynomialDegree = this.generatorPolynomial.length;
+	    data = updateCrcBitsToZero(data);
+		
+	    for(int i = 0; i < data.length; i++){
+		int mostSignificativeBit = data[i];
+		if(mostSignificativeBit == Bit.ONE.getValue()) {
+		    for(int j = 0; j < polynomialDegree; j++){
+			data[i+j] ^= this.generatorPolynomial[j];
+		    }
+		}
+	    }
+
+	    return data;
+	}
+
+	private int[] updateCrcBitsToZero(int[] data) {
+	    int polynomialDegree = this.generatorPolynomial.length
+	    int size = data.length;
+		
+	    for (int i = size - polynomialDegree; i < size; i++){
+		data[i] = Bit.ZERO.getValue();
+	    }
+	
+	    return data;
+	}	
 }
