@@ -19,6 +19,7 @@ public class CyclicRedundancyVerifier implements Verifier {
             if (this.verifyCRC(data)) {
 	        return Response.CORRECT.toString();
 	    }
+		
 	    return Response.INCORRECT.toString();
 	}
 
@@ -33,7 +34,7 @@ public class CyclicRedundancyVerifier implements Verifier {
 	
 	private int[] polynomialDivision(int[] data) {
 	    int polynomialDegree = this.generatorPolynomial.length;
-	    data = updateCrcBitsToZero(data);
+	    data = this.updateCrcBitsToZero(data);
 		
 	    for(int i = 0; i < data.length; i++){
 		int mostSignificativeBit = data[i];
