@@ -10,8 +10,16 @@ public class CyclicRedundancyVerifier implements Verifier {
 
 	@Override
 	public String verifyData(int[] data) {
-		// TODO Auto-generated method stub
-		return null;
+	    return "According to CRC code, the given data "
+		    + Converter.convertToString(data) + " is " 
+		    + this.getVerdict(data) + "!";
+	}
+
+	private String getVerdict(int[] data) {
+            if (this.verifyCRC(data)) {
+	        return Response.CORRECT.toString();
+	    }
+	    return Response.INCORRECT.toString();
 	}
 
 	
