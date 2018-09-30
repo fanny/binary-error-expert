@@ -51,7 +51,7 @@ public class CyclicRedundancyVerifier implements Verifier {
 	}
 
 	private int[] updateCrcBitsToZero(int[] data) {
-		int polynomialDegree = this.generatorPolynomial.length;
+		int polynomialDegree = this.generatorPolynomial.length - 1;
 		int size = data.length;
 
 		for (int i = size - polynomialDegree; i < size; i++) {
