@@ -35,7 +35,7 @@ public class CyclicRedundancyVerifier implements Verifier {
 	}
 	
 	private int[] polynomialDivision(int[] data) {
-		int polynomialDegree = this.generatorPolynomial.length;
+		int polynomialDegree = this.generatorPolynomial.length - 1;
 		data = this.updateCrcBitsToZero(data);
 
 		for (int i = 0; i < data.length; i++) {
